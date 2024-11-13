@@ -168,9 +168,17 @@
             <h4>กลไกเกม : </h4>
         </div>
             <ul class="container" style="color: aliceblue;">
-                <ol class="mb-2"  style="text-decoration: underline; font-weight: bolder">การเคลื่อนไหว : </ol> 
-                <li>เดินซ้ายขวาและกระโดดข้ามอุปสรรคต่าง ๆ</li>
-                <li>การกระโดดสามารถทำได้เมื่อผู้เล่นอยู่บนพื้นเท่านั้น</li>
+                <ol class="mb-2"  style="text-decoration: underline; font-weight: bolder">การเคลื่อนไหว : ผู้เล่นควบคุมตัวละครนักเล่นแร่แปรธาตุด้วยการเคลื่อนไหวแบบฟิสิกส์</ol> 
+                <li>เดินซ้ายขวาและกระโดดข้ามอุปสรรคต่าง ๆ
+                    <ol>- ใช้ Rigidbody พร้อมการจำกัดตำแหน่งและการหมุนเพื่อป้องกันการเคลื่อนไหวที่ไม่ต้องการ
+                    </ol>
+                    <ol>- การเคลื่อนไหวแนวนอนเป็นไปอย่างราบรื่น มีการเร่งและลดความเร็วเพื่อจำลองโมเมนตัม</ol>
+                </li>
+                <li>การกระโดดสามารถทำได้เมื่อผู้เล่นอยู่บนพื้นเท่านั้น
+                    <ol>- มีการตรวจสอบพื้นดินเพื่อให้การกระโดดเกิดขึ้นเฉพาะเมื่อผู้เล่นอยู่บนพื้น
+                    </ol>
+                    <ol>- ความสูงของการกระโดดคงที่ ทำให้ผู้เล่นสามารถคาดการณ์และวางแผนการกระโดดได้อย่างแม่นยำ</ol>
+                </li>
                 <li>กระโดด: กดปุ่ม Space Bar</li>
                 <li>ใช้พลังพิเศษ/โต้ตอบ: กดปุ่ม E</li>
             </ul>
@@ -184,30 +192,53 @@
             <hr>
             <ul class="container" style="color: aliceblue;">
                 <ol class="mb-2 " style="text-decoration: underline; font-weight: bolder;">Power-Ups : </ol> 
-                <li><span style="font-weight: bold;">เพิ่มความเร็วชั่วคราว: </span>เก็บไอเท็มพิเศษเพื่อเพิ่มความเร็วในการเคลื่อนที่ชั่วคราว</li>
-                <li><span style="font-weight: bold;">กระโดดสองครั้ง:  </span>เก็บไอเท็มเพื่อสามารถกระโดดครั้งที่สองในอากาศ</li>
+                <li><span style="font-weight: bold;">เพิ่มความเร็วชั่วคราว: </span>เก็บไอเท็มพิเศษเพื่อเพิ่มความเร็วในการเคลื่อนที่ชั่วคราว
+                 <ol>- ผู้เล่นสามารถเก็บ Power-Up ที่เพิ่มความเร็วในการเคลื่อนที่ชั่วคราว</ol>
+                 <ol>- ใช้ Prefab สำหรับ Power-Up และใช้ Coroutine เพื่อกำหนดระยะเวลาของผล</ol>
+                </li>
+                <li><span style="font-weight: bold;">กระโดดสองครั้ง:  </span>เก็บไอเท็มเพื่อสามารถกระโดดครั้งที่สองในอากาศ
+                 <ol>- อนุญาตให้ผู้เล่นกระโดดครั้งที่สองในอากาศหลังจากเก็บ Power-Up</ol>
+                 <ol>- ใช้การตรวจสอบสถานะของ Power-Up ในการอนุญาตกระโดดสองครั้ง</ol>
+                </li>
             </ul>
             <hr>
             <ul class="container" style="color: aliceblue;">
                 <ol class="mb-2 " style="text-decoration: underline; font-weight: bolder;">กับดักและอุปสรรค : </ol> 
-                <li><span style="font-weight: bold;">ใบมีดหมุน:</span> หลีกเลี่ยงใบมีดที่หมุนรอบตัวเอง</li>
-                <li><span style="font-weight: bold;">พื้นลาวา:</span> ห้ามเหยียบพื้นลาวา มิฉะนั้นจะได้รับความเสียหายทันที</li>
+                <li><span style="font-weight: bold;">ใบมีดหมุน:</span> หลีกเลี่ยงใบมีดที่หมุนรอบตัวเอง
+                 <ol>- ใบมีดที่หมุนรอบตัวเองและสร้างอันตรายต่อผู้เล่น</ol>
+                 <ol>- ใช้ Transform.Rotate() เพื่อทำให้ใบมีดหมุนและเพิ่มการจำกัดการหมุน</ol>
+                </li>
+                <li><span style="font-weight: bold;">พื้นลาวา:</span> ห้ามเหยียบพื้นลาวา มิฉะนั้นจะได้รับความเสียหายทันที
+                 <ol>- พื้นที่ที่เต็มไปด้วยลาวาที่สร้างความเสียหายทันทีเมื่อสัมผัส</ol>
+                 <ol>- ใช้การตรวจจับการชนเพื่อทำความเสียหายต่อผู้เล่น</ol>
+                </li>
             </ul>
             <hr>
             <ul class="container" style="color: aliceblue;">
                 <ol class="mb-2 " style="text-decoration: underline; font-weight: bolder;">การเคลื่อนย้าย (Teleportation) : </ol> 
-                <li>ใช้ประตูวาร์ปเพื่อเคลื่อนย้ายไปยังพื้นที่ใหม่</li>
+                <li>ใช้ประตูวาร์ปเพื่อเคลื่อนย้ายไปยังพื้นที่ใหม่
+                    <ol>- ผู้เล่นสามารถเคลื่อนย้ายจากที่หนึ่งไปยังอีกที่หนึ่งทันที</ol>
+                    <ol>- ใช้ Particle System เพื่อสร้างเอฟเฟกต์ภาพที่เสริมประสบการณ์การเคลื่อนย้าย</ol>
+                </li>
                 <li>ประตูวาร์ปจะมีเอฟเฟกต์พิเศษเพื่อระบุตำแหน่ง</li>
             </ul>
             <hr>
             <ul class="container" style="color: aliceblue;">
                 <ol class="mb-2 " style="text-decoration: underline; font-weight: bolder;">การเก็บวัตถุเพื่อปลดล็อกพื้นที่ : </ol> 
-                <li>เก็บกุญแจหรือวัตถุพิเศษเพื่อเปิดประตูและเข้าถึงพื้นที่ใหม่ของดันเจี้ยน</li>
+                <li>เก็บกุญแจหรือวัตถุพิเศษเพื่อเปิดประตูและเข้าถึงพื้นที่ใหม่ของดันเจี้ยน
+                    <ol>- ผู้เล่นต้องเก็บกุญแจหรือวัตถุพิเศษเพื่อเปิดประตูหรือเข้าถึงพื้นที่ใหม่
+                    </ol>
+                    <ol>- ใช้การตรวจสอบวัตถุที่เก็บในอินเวนทอรีของผู้เล่น</ol>
+                </li>
             </ul>
             <hr>
             <ul class="container" style="color: aliceblue;">
                 <ol class="mb-2 " style="text-decoration: underline; font-weight: bolder;">การแข่งกับเวลา : </ol> 
-                <li>ในบางส่วนของด่าน จะมีตัวนับเวลาถอยหลัง ผู้เล่นต้องผ่านด่านก่อนเวลาจะหมด</li>
+                <ol style="font-weight: bold;">ระบบนับถอยหลัง</ol>
+                <li>ในบางส่วนของด่าน จะมีตัวนับเวลาถอยหลัง ผู้เล่นต้องผ่านด่านก่อนเวลาจะหมด
+                    <ol>- ผู้เล่นต้องทำภารกิจให้เสร็จภายในเวลาที่กำหนด</ol>
+                    <ol>- ใช้ตัวนับเวลาถอยหลังและแสดงผลบนหน้าจอ</ol>
+                </li>
             </ul>
     </div>
 
@@ -263,9 +294,9 @@
             <h4>การติดต่อ : </h4>
         </div>
             <ul class="container" style="color: aliceblue;">
-                <ol class="mb-2"><span style="font-weight: bold;">หากคุณมีข้อเสนอแนะหรือพบปัญหาเกี่ยวกับเกม กรุณาติดต่อเราได้ที่ : </span> Email </ol>
-                <li><span style="font-weight: bold;">Pathompong Chanphiw:  </span> 66130045@dpu.ac.th</li>
-                <li><span style="font-weight: bold;">Warongkon Fukthongyoo:  </span> 66130773@dpu.ac.th</li>
+                <ol class="mb-2"><span style="font-weight: bold;">หากคุณมีข้อเสนอแนะหรือพบปัญหาเกี่ยวกับเกม กรุณาติดต่อเราได้ที่ : </span> </ol>
+                <li><span style="font-weight: bold;">Pathompong Chanphiw,  </span> Email : 66130045@dpu.ac.th</li>
+                <li><span style="font-weight: bold;">Warongkon Fukthongyoo,  </span> Email : 66130773@dpu.ac.th</li>
             </ul>
     </div>
 
@@ -337,7 +368,7 @@
                   <div class="product__item">
                     <div
                       class="product__item__pic set-bg"
-                      data-setbg="img/trending/trend-1.jpg"
+                      data-setbg="img/trending/Alchemist8.jpeg"
                     >
                       <div class="ep">18 / 18</div>
                       <div class="comment">
@@ -360,7 +391,7 @@
                   <div class="product__item">
                     <div
                       class="product__item__pic set-bg"
-                      data-setbg="img/trending/trend-2.jpg"
+                      data-setbg="img/trending/Alchemist4.jpeg"
                     >
                       <div class="ep">18 / 18</div>
                       <div class="comment">
@@ -385,7 +416,7 @@
                   <div class="product__item">
                     <div
                       class="product__item__pic set-bg"
-                      data-setbg="img/trending/trend-3.jpg"
+                      data-setbg="img/trending/Alchemist5.jpeg"
                     >
                       <div class="ep">18 / 18</div>
                       <div class="comment">
@@ -408,7 +439,7 @@
                   <div class="product__item">
                     <div
                       class="product__item__pic set-bg"
-                      data-setbg="img/trending/trend-4.jpg"
+                      data-setbg="img/trending/Alchemist6.jpeg"
                     >
                       <div class="ep">18 / 18</div>
                       <div class="comment">
@@ -429,7 +460,7 @@
                   <div class="product__item">
                     <div
                       class="product__item__pic set-bg"
-                      data-setbg="img/trending/trend-5.jpg"
+                      data-setbg="img/trending/Alchemist7.jpeg"
                     >
                       <div class="ep">18 / 18</div>
                       <div class="comment">
@@ -450,7 +481,7 @@
                   <div class="product__item">
                     <div
                       class="product__item__pic set-bg"
-                      data-setbg="img/trending/trend-6.jpg"
+                      data-setbg="img/trending/Alchemist3.jpeg"
                     >
                       <div class="ep">18 / 18</div>
                       <div class="comment">
